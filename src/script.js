@@ -54,14 +54,14 @@ houseGroup.add(roof);
 //DOOR
 const door = new THREE.Mesh(
   new THREE.PlaneGeometry(2.2, 2.2),
-  new THREE.MeshStandardMaterial({color:'red'})
+  new THREE.MeshStandardMaterial({ color: "red" })
 );
-door.position.set(0, 1.1,2.01)
+door.position.set(0, 1.1, 2.01);
 houseGroup.add(door);
 
 //BUSHES
-const bushGeometry = new THREE.SphereGeometry(1, 16, 16)
-const bushMaterial = new THREE.MeshStandardMaterial({ color: "green" })
+const bushGeometry = new THREE.SphereGeometry(1, 16, 16);
+const bushMaterial = new THREE.MeshStandardMaterial({ color: "green" });
 
 const bush1 = new THREE.Mesh(bushGeometry, bushMaterial);
 bush1.scale.set(0.5, 0.5, 0.5);
@@ -78,7 +78,38 @@ bush3.position.set(-0.8, 0.1, 2.2);
 const bush4 = new THREE.Mesh(bushGeometry, bushMaterial);
 bush4.scale.set(0.15, 0.15, 0.15);
 bush4.position.set(-1, 0.05, 2.6);
-houseGroup.add(bush1,bush2,bush3,bush4);
+houseGroup.add(bush1, bush2, bush3, bush4);
+
+//GRAVES
+const graveGroup = new THREE.Group();
+scene.add(graveGroup);
+
+const graveGeometry = new THREE.BoxGeometry(0.6, 0.8, 0.2);
+const graveMaterial = new THREE.MeshStandardMaterial({ color: "brown" });
+
+for (let i = 0; i < 30; i++) {
+    //trovare angoli randomizzati
+  const angle = Math.random() * Math.PI * 2;
+  //trovare numeri random tra 3 e 7
+  const radius = 3 + Math.random() * 4;
+  //trovare angoli random seno 
+  const x = Math.sin(angle) * radius;
+  //trovare angoli random coseno
+  const z = Math.cos(angle) * radius;
+    
+  const graveMesh = new THREE.Mesh(graveGeometry, graveMaterial);
+  graveMesh.position.x = x;
+  graveMesh.position.y = Math.random() * 0.4;//poszione altezza random
+  graveMesh.position.z = z;
+  //rotazione leggero random
+  graveMesh.rotation.set(
+    (Math.random() - 0.5) * 0.4,
+    (Math.random() - 0.5) * 0.4,
+    (Math.random() - 0.5) * 0.4
+  );
+  graveGroup.add(graveMesh);
+}
+
 /**
  * Lights
  */
