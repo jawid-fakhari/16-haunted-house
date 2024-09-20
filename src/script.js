@@ -15,22 +15,51 @@ const canvas = document.querySelector("canvas.webgl");
 // Scene
 const scene = new THREE.Scene();
 
+//AXES Helper
+const axesHelper = new THREE.AxesHelper(5);
+axesHelper.scale.set(2, 2, 2);
+scene.add(axesHelper);
 /**
  * House
  */
-// Temporary sphere
-const sphere = new THREE.Mesh(
-  new THREE.SphereGeometry(1, 32, 32),
-  new THREE.MeshStandardMaterial({ roughness: 0.7 })
-);
-scene.add(sphere);
-// Floor
+// FLOOR
 const floor = new THREE.Mesh(
   new THREE.PlaneGeometry(20, 20),
   new THREE.MeshStandardMaterial({})
 );
 floor.rotation.x = -Math.PI * 0.5;
 scene.add(floor);
+
+//*****HOUSE container
+const houseGroup = new THREE.Group();
+scene.add(houseGroup);
+
+// WALLS
+const walls = new THREE.Mesh(
+  new THREE.BoxGeometry(4, 2.5, 4),
+  new THREE.MeshStandardMaterial()
+);
+walls.position.y += 1.25;
+houseGroup.add(walls);
+
+//ROOF
+const roof = new THREE.Mesh(
+  new THREE.ConeGeometry(3.5, 1.5, 4),
+  new THREE.MeshStandardMaterial()
+);
+roof.position.y = 2.5 + 0.75;
+roof.rotation.y = Math.PI * 0.25;
+houseGroup.add(roof);
+
+//DOOR
+const door = new THREE.Mesh(
+  new THREE.PlaneGeometry(2.2, 2.2),
+  new THREE.MeshStandardMaterial()
+);
+door.position.z = 2.01;
+door.position.y = 1.1
+houseGroup.add(door);
+
 /**
  * Lights
  */
