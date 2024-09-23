@@ -87,20 +87,60 @@ scene.add(graveGroup);
 const graveGeometry = new THREE.BoxGeometry(0.6, 0.8, 0.2);
 const graveMaterial = new THREE.MeshStandardMaterial({ color: "brown" });
 
-for (let i = 0; i < 30; i++) {
-    //trovare angoli randomizzati
+//Array di graveStones
+let gravesArr = [];
+
+//Protezione contro infinte loop
+let protection = 0;
+
+while (gravesArr.length < 30) {
+  //trovare angoli randomizzati
   const angle = Math.random() * Math.PI * 2;
   //trovare numeri random tra 3 e 7
   const radius = 3 + Math.random() * 4;
-  //trovare angoli random seno 
-  const x = Math.sin(angle) * radius;
-  //trovare angoli random coseno
-  const z = Math.cos(angle) * radius;
-    
+  //creare un oggetto per la posizione dei gravestones che poi andranno salvati dentro gravesArr
+  let graveStonePos = {
+    //trovare angoli random seno
+    x: Math.sin(angle) * radius,
+    //trovare angoli random coseno
+    z: Math.cos(angle) * radius,
+    //raggio di 0.7, usato nella condizione della distaza nel ciclo j
+    r: 0.6,
+  };
+
+  //Assumiamo che i graveStone non si collidono
+  let overlapping = false;
+  //Posizione corrente del graveStone
+  const v1 = new THREE.Vector3(graveStonePos.x, 0, graveStonePos.z);
+  //Ciclo di controllo per evitare collisioni
+  for (let j = 0; j < gravesArr.length; j++) {
+    //altri gravestones
+    let other = gravesArr[j];
+    //posizione degli altri gravestons
+    const v2 = new THREE.Vector3(other.x, 0, other.z);
+    //la distanza tra il graveStone corrente con gli altri
+    const distance = v1.distanceTo(v2);
+    //Condizione controllo distanza tra due graveStone
+    if (distance < graveStonePos.r + other.r) {
+      overlapping = true;
+      break;
+    }
+  }
+  //Se non overlapping push
+  if (!overlapping) {
+    gravesArr.push(graveStonePos);
+  }
+  protection += 1;
+  
+  if (protection == 100) {
+    console.log("Siamo arrivati al limite");
+    break;
+  }
+}
+
+for (let i = 0; i < gravesArr.length; i++) {
   const graveMesh = new THREE.Mesh(graveGeometry, graveMaterial);
-  graveMesh.position.x = x;
-  graveMesh.position.y = Math.random() * 0.4;//poszione altezza random
-  graveMesh.position.z = z;
+  graveMesh.position.set(gravesArr[i].x, Math.random() * 0.4, gravesArr[i].z);
   //rotazione leggero random
   graveMesh.rotation.set(
     (Math.random() - 0.5) * 0.4,
