@@ -415,6 +415,32 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
+/***************************************************************
+ * Shadows "attenzione: non attivare shadow dove non ha un impatto per il performance"
+ */
+//Renderer
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFShadowMap;
+
+//Cast and recive
+directionalLight.castShadow = true;
+ghost1.castShadow = true;
+ghost2.castShadow = true;
+ghost3.castShadow = true;
+
+walls.castShadow = true;
+walls.receiveShadow = true;
+
+roof.castShadow = true;
+floor.receiveShadow = true;
+
+for (const grave of graveGroup.children) {
+  grave.castShadow = true;
+  grave.receiveShadow = true;
+}
+
+
+
 /************************************************************
  * Animate
  */
@@ -427,7 +453,7 @@ const tick = () => {
 
   //Animate Ghosts
   const ghostAngle = elapsedTime * 0.5;
-  ghostAnimation(ghostAngle, 6, 4 , 5);
+  ghostAnimation(ghostAngle, 6, 4, 5);
 
   // Update controls
   controls.update();
