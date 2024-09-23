@@ -22,25 +22,25 @@ axesHelper.scale.set(2, 2, 2);
 scene.add(axesHelper);
 
 /**************************************************************
- * TEXTURES
+ * TEXTURES, usare il formato webp fa una grande differenza
  */
 const textureLoader = new THREE.TextureLoader();
 
 //******************Floor Texture
-const floorAlphaTexture = textureLoader.load("/resources/floor/alpha.jpg");
+const floorAlphaTexture = textureLoader.load("/resources/floor/alpha.webp");
 const floorColorTexture = textureLoader.load(
-  "/resources/floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_diff_1k.jpg"
+  "/resources/floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_diff_1k.webp"
 );
 //armtexture copre aoMap, roughnessMap e metlnessMap
 const floorArmTexture = textureLoader.load(
-  "/resources/floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_arm_1k.jpg"
+  "/resources/floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_arm_1k.webp"
 );
 const floorNormalTexture = textureLoader.load(
-  "/resources/floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_nor_gl_1k.jpg"
+  "/resources/floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_nor_gl_1k.webp"
 );
 //DisplacementTexture muove i vertici quindi necessità più vertici (ma non troppi) sul geometry per poter applicare meglio
 const floorDisplacementTexture = textureLoader.load(
-  "/resources/floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_disp_1k.jpg"
+  "/resources/floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_disp_1k.webp"
 );
 //solo per color texture necessità SRGBCloroSpace
 floorColorTexture.colorSpace = THREE.SRGBColorSpace;
@@ -64,28 +64,28 @@ floorDisplacementTexture.wrapT = THREE.RepeatWrapping;
 
 //******************Wall Texture
 const wallColorTexture = textureLoader.load(
-  "/resources/wall/castle_brick_broken_06_diff_1k.jpg"
+  "/resources/wall/castle_brick_broken_06_diff_1k.webp"
 );
 //armtexture copre aoMap, roughnessMap e metlnessMap
 const wallArmTexture = textureLoader.load(
-  "/resources/wall/castle_brick_broken_06_arm_1k.jpg"
+  "/resources/wall/castle_brick_broken_06_arm_1k.webp"
 );
 const wallNormalTexture = textureLoader.load(
-  "/resources/wall/castle_brick_broken_06_nor_gl_1k.jpg"
+  "/resources/wall/castle_brick_broken_06_nor_gl_1k.webp"
 );
 //solo per color texture necessità SRGBCloroSpace
 wallColorTexture.colorSpace = THREE.SRGBColorSpace;
 
 //******************Roof Texture
 const roofColorTexture = textureLoader.load(
-  "/resources/roof/roof_slates_02_diff_1k.jpg"
+  "/resources/roof/roof_slates_02_diff_1k.webp"
 );
 //armtexture copre aoMap, roughnessMap e metlnessMap
 const roofArmTexture = textureLoader.load(
-  "/resources/roof/roof_slates_02_arm_1k.jpg"
+  "/resources/roof/roof_slates_02_arm_1k.webp"
 );
 const roofNormalTexture = textureLoader.load(
-  "/resources/roof/roof_slates_02_nor_gl_1k.jpg"
+  "/resources/roof/roof_slates_02_nor_gl_1k.webp"
 );
 //solo per color texture necessità SRGBCloroSpace
 roofColorTexture.colorSpace = THREE.SRGBColorSpace;
@@ -100,45 +100,45 @@ roofNormalTexture.wrapS = THREE.RepeatWrapping;
 
 //******************Roof Texture
 const bushColorTexture = textureLoader.load(
-  "/resources/bush/leaves_forest_ground_diff_1k.jpg"
+  "/resources/bush/leaves_forest_ground_diff_1k.webp"
 );
 //armtexture copre aoMap, roughnessMap e metlnessMap
 const bushArmTexture = textureLoader.load(
-  "/resources/bush/leaves_forest_ground_arm_1k.jpg"
+  "/resources/bush/leaves_forest_ground_arm_1k.webp"
 );
 const bushNormalTexture = textureLoader.load(
-  "/resources/bush/leaves_forest_ground_nor_gl_1k.jpg"
+  "/resources/bush/leaves_forest_ground_nor_gl_1k.webp"
 );
 //solo per color texture necessità SRGBCloroSpace
 bushColorTexture.colorSpace = THREE.SRGBColorSpace;
 
 //******************Grave stones Texture
 const graveColorTexture = textureLoader.load(
-  "/resources/grave/plastered_stone_wall_diff_1k.jpg"
+  "/resources/grave/plastered_stone_wall_diff_1k.webp"
 );
 //armtexture copre aoMap, roughnessMap e metlnessMap
 const graveArmTexture = textureLoader.load(
-  "/resources/grave/plastered_stone_wall_arm_1k.jpg"
+  "/resources/grave/plastered_stone_wall_arm_1k.webp"
 );
 const graveNormalTexture = textureLoader.load(
-  "/resources/grave/plastered_stone_wall_nor_gl_1k.jpg"
+  "/resources/grave/plastered_stone_wall_nor_gl_1k.webp"
 );
 //solo per color texture necessità SRGBCloroSpace
 graveColorTexture.colorSpace = THREE.SRGBColorSpace;
 
 //******************Door stones Texture
-const doorColorTexture = textureLoader.load("/resources/door/color.jpg");
-const doorAlphaTexture = textureLoader.load("/resources/door/alpha.jpg");
+const doorColorTexture = textureLoader.load("/resources/door/color.webp");
+const doorAlphaTexture = textureLoader.load("/resources/door/alpha.webp");
 const doorAmbientOcclusionTexture = textureLoader.load(
-  "/resources/door/ambientOcclusion.jpg"
+  "/resources/door/ambientOcclusion.webp"
 );
-const doorHeightTexture = textureLoader.load("/resources/door/height.jpg");
-const doorNormalTexture = textureLoader.load("/resources/door/normal.jpg");
+const doorHeightTexture = textureLoader.load("/resources/door/height.webp");
+const doorNormalTexture = textureLoader.load("/resources/door/normal.webp");
 const doorMetalnessTexture = textureLoader.load(
-  "/resources/door/metalness.jpg"
+  "/resources/door/metalness.webp"
 );
 const doorRoughnessTexture = textureLoader.load(
-  "/resources/door/roughness.jpg"
+  "/resources/door/roughness.webp"
 );
 
 doorColorTexture.colorSpace = THREE.SRGBColorSpace;
