@@ -136,7 +136,7 @@ while (gravesArr.length < 30) {
     console.log("Siamo arrivati al limite");
     break;
   }
-}
+} 
 
 for (let i = 0; i < gravesArr.length; i++) {
   const graveMesh = new THREE.Mesh(graveGeometry, graveMaterial);
