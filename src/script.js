@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { Timer } from "three/addons/misc/Timer.js";
+import { Sky } from "three/examples/jsm/Addons.js";
 import GUI from "lil-gui";
 
 /**
@@ -460,6 +461,21 @@ ghost2.shadow.camera.far = 10;
 ghost3.shadow.mapSize.height = 256;
 ghost3.shadow.mapSize.width = 256;
 ghost3.shadow.camera.far = 10;
+
+/**
+ * SKY
+ */
+//creare un sky, sky è un cubo, sky è un addons di three.js che viene importato
+const sky = new Sky();
+//scalare sky grande cosi i nostri geometri vanno dentro questo cubo
+sky.scale.set(100, 100, 100);
+scene.add(sky);
+
+sky.material.uniforms["turbidity"].value = 10;
+sky.material.uniforms["rayleigh"].value = 3;
+sky.material.uniforms["mieCoefficient"].value = 0.1;
+sky.material.uniforms["mieDirectionalG"].value = 0.95;
+sky.material.uniforms["sunPosition"].value.set(0.3, -0.038, -0.95);
 
 /************************************************************
  * Animate
