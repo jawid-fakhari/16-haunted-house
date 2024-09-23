@@ -477,6 +477,12 @@ sky.material.uniforms["mieCoefficient"].value = 0.1;
 sky.material.uniforms["mieDirectionalG"].value = 0.95;
 sky.material.uniforms["sunPosition"].value.set(0.3, -0.038, -0.95);
 
+/**
+ * Fog, ci sono due tipi. FogExp2 è più realistico 
+ */
+// scene.fog = new THREE.Fog(0xff0000, 1 , 13);
+scene.fog = new THREE.FogExp2(0x04343f, 0.1);
+
 /************************************************************
  * Animate
  */
