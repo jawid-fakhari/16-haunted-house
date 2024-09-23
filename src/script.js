@@ -351,13 +351,20 @@ scene.add(directionalLight);
 
 //Door Light
 const doorLight = new THREE.PointLight(0xff7d46, 1);
-doorLight.position.set(0,2.2,2.5);
+doorLight.position.set(0, 2.2, 2.5);
 scene.add(doorLight);
 
 // const sphereSize = 0.5;
 // const pointLightHelper = new THREE.PointLightHelper(doorLight, sphereSize);
 // scene.add(pointLightHelper);
 
+/****************************
+ * Ghosts
+ */
+const ghost1 = new THREE.PointLight(0x8800ff, 6);
+const ghost2 = new THREE.PointLight(0xff0088, 6);
+const ghost3 = new THREE.PointLight(0xff0000, 6);
+scene.add(ghost1, ghost2, ghost3);
 /**
  * Sizes
  */
@@ -418,6 +425,10 @@ const tick = () => {
   timer.update();
   const elapsedTime = timer.getElapsed();
 
+  //Animate Ghosts
+  const ghostAngle = elapsedTime * 0.5;
+  ghostAnimation(ghostAngle, 6, 4 , 5);
+
   // Update controls
   controls.update();
 
@@ -429,3 +440,20 @@ const tick = () => {
 };
 
 tick();
+
+function ghostAnimation(angle, x, y, z) {
+  ghost1.position.x = Math.cos(angle) * x;
+  ghost1.position.z = Math.sin(angle) * x;
+  ghost1.position.y =
+    Math.sin(angle * 2.34) * Math.sin(angle * 3.45) * Math.sin(angle * 2.25);
+
+  ghost2.position.x = -Math.cos(angle) * y;
+  ghost2.position.z = Math.sin(angle) * y;
+  ghost2.position.y =
+    Math.sin(angle * 1.3) * Math.sin(angle * 2.4) * Math.sin(angle * 3.2);
+
+  ghost3.position.x = Math.cos(angle) * z;
+  ghost3.position.z = -Math.sin(angle) * z;
+  ghost3.position.y =
+    Math.sin(angle * 3.1) * Math.sin(angle * 1.4) * Math.sin(angle * 2.1);
+}
